@@ -1,39 +1,69 @@
 import React, {Component} from 'react';
-import {Image, FlatList, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaViewBase,
+  Dimensions,
+} from 'react-native';
+
+var BadgeData = require('./Badge.json');
+
+var {width} = Dimensions.get('window');
+
+var cols = 3;
+var boxW = 100;
+var vMargin = (width - cols * boxW) / (cols + 1);
+var hMargin = 25;
 
 export default class AHelloWorld extends Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>hello</Text>
+    return <View style={styles.container}>{this.renderAllBadge()}</View>;
+  }
 
-        <View style={styles.innerViewStyle}>
-          <Text>777777abc</Text>
-        </View>
-        <View style={styles.innerViewStyle2}>
-          <Text>33333as</Text>
-        </View>
-      </View>
-    );
+  renderAllBadge() {
+    // 加子组件
+    var allBadge = [];
+    // 遍历json
+    for (let index = 0; index < BadgeData.data.length; index++) {
+      var badge = BadgeData.data[index];
+      allBadge.push(
+        <View key={index} style={styles.outViewStyle}>
+          <Image source={{uri: badge.icon}} style={styles.imageStyle} />
+          <Text style={styles.mainTitleStyle}>{badge.title}</Text>
+        </View>,
+      );
+    }
+    return allBadge;
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    top: 333,
-    width: 300,
-    height: 100,
-    backgroundColor: 'red',
-    // 改变主轴方向
+    top: 44,
+    backgroundColor: '#9999ff',
+    //主轴的方向
     flexDirection: 'row',
+    //换行
+    flexWrap: 'wrap',
   },
-  innerViewStyle: {
-    backgroundColor: 'green',
-    width: 100,
+
+  outViewStyle: {
+    backgroundColor: 'red',
+    //设置侧轴的对齐方式
+    alignItems: 'center',
+    width: boxW,
+    height: boxW,
+    marginLeft: vMargin,
+    marginTop: hMargin,
   },
-  innerViewStyle2: {
-    backgroundColor: 'yellow',
-    width: 100,
+
+  imageStyle: {
+    width: 80,
+    height: 80,
   },
+
+  mainTitleStyle: {},
 });
