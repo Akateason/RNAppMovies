@@ -11,8 +11,9 @@ import {
 } from 'react-native';
 
 var BadgeData = require('./Badge.json');
+var width = Dimensions.get('window');
 
-var {width} = Dimensions.get('window');
+var {width,height} = Dimensions.get('window');
 
 var cols = 3;
 var boxW = 100;
@@ -67,14 +68,14 @@ const styles = StyleSheet.create({
   },
   textInpoutStyle: {
     height:40,
-    width:300,
+    width:width*0.8,
     backgroundColor:'white',
     marginBottom:1,
     textAlign:'center',
   },
   loginButtonStyle:{
     height:35,
-    width:300,
+    width:width*0.8,
     backgroundColor:'skyblue',
     marginTop:30,
     marginBottom:20,
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
   settingStyle:{    
     flexDirection:'row',
     // backgroundColor:'red',
-    width:350,
+    width:width*0.8,
     justifyContent:'space-between',
   },
   otherLoginStyle:{    
