@@ -11,7 +11,6 @@ import {
 
 var QQLogin = require('./qqLogin');
 
-
 var BadgeData = require('./Badge.json');
 
 var {width} = Dimensions.get('window');
@@ -23,6 +22,6 @@ var hMargin = 25;
 
 export default class AHelloWorld extends Component {
   render() {
-    return <QQLogin />
+    return <QQLogin />;
   }
 }
